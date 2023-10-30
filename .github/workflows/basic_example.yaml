@@ -1,27 +1,27 @@
 # Set the name of the GitHub Action. This will display on GitHub UI.
-name: My first action
+name: My First Action
 
 # Set the event that will trigger the GitHub Action.
 on:
-    push:
-        branches:
-            - "main"
+  push:
+    branches:
+      - main
 
 # Set the jobs that will run in this GitHub Action.
 jobs:
-    build_and_test:
-        runs-on: ubuntu-latest
-        steps:
-            - name: "Setup Node.js 20.x"
-                uses: actions/setup-node@v1
-                with:
-                    node-version: "20.x"
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.x
 
-            - name: "Install dependencies"
-                run: npm install
+      - name: Install dependencies
+        run: npm install
 
-            - name: "Check my code"
-                uses: actions/checkout@v2
+      - name: Check my code
+        uses: actions/checkout@v2
 
-            - name: "Print a message"
-                run: echo "Hello, this is your first commit on the main branch!"
+      - name: Print a message
+        run: echo "Hello, this is your first commit on the main branch!"
