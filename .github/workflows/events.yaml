@@ -1,0 +1,32 @@
+name: GitHub Events
+on: 
+    pull_request:
+        types:
+            - opened
+        branches:
+            - main
+            - 'dev-*' # Any branch prefixed with 'dev-'
+            - 'feat/**' # Any branch prefixed with 'feat/'
+    workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+    push:
+        branches:
+            - main
+            - 'dev-*'
+            - 'feat/**'
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Ouput event data
+              run: echo "${{ toJson(github.event) }}"
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Install dependencies
+              run: npm ci
+            - name: Run tests
+              run: npm run test
+            - name: Build
+              run: npm run build
+            - name: Deploy
+              run: echo "Deploying!"
+
